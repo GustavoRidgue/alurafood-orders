@@ -23,11 +23,13 @@ public class OrderItem {
 
     @NotNull
     @Positive
-    private Integer quantidade;
+    @Column(name = "quantidade")
+    private Integer quantity;
 
-    private String descricao;
+    @Column(name = "descricao")
+    private String description;
 
-    @ManyToOne(optional=false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "pedido_id", nullable = false)
     private Order order;
-
 }

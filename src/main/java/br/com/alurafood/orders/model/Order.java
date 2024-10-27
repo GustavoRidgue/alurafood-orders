@@ -24,12 +24,13 @@ public class Order {
     private Long id;
 
     @NotNull
-    private LocalDateTime dataHora;
+    @Column(name = "data_hora")
+    private LocalDateTime data;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="order")
-    private List<OrderItem> itens = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
+    private List<OrderItem> items = new ArrayList<>();
 }

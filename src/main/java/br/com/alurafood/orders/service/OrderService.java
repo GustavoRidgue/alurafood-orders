@@ -4,6 +4,7 @@ import br.com.alurafood.orders.dto.OrderDTO;
 import br.com.alurafood.orders.dto.StatusDTO;
 import br.com.alurafood.orders.model.Order;
 import br.com.alurafood.orders.model.Status;
+import br.com.alurafood.orders.repository.OrderItemRepository;
 import br.com.alurafood.orders.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,9 @@ public class OrderService {
 
     @Autowired
     private OrderRepository repository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Autowired
     private final ModelMapper modelMapper;
@@ -42,10 +46,10 @@ public class OrderService {
     public OrderDTO createOrder(OrderDTO dto) {
         Order order = modelMapper.map(dto, Order.class);
 
-        order.setDataHora(LocalDateTime.now());
+        order.setData(LocalDateTime.now());
         order.setStatus(Status.REALIZADO);
-        order.getItens().forEach(item -> item.setOrder(order));
-        Order salvo = repository.save(order);
+        order.getItems().forEach(item -> item.setOrder(order));
+        repository.save(order);
 
         return modelMapper.map(order, OrderDTO.class);
     }

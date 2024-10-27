@@ -14,9 +14,9 @@ import java.util.List;
 public class OrderDTO {
 
     private Long id;
-    private LocalDateTime dataHora;
+    private LocalDateTime data;
     private Status status;
-    private List<OrderItemDTO> itens = new ArrayList<>();
+    private List<OrderItemDTO> items = new ArrayList<>();
 
 
 

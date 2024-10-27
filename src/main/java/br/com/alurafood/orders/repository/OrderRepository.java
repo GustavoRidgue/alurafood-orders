@@ -16,7 +16,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("update Order p set p.status = :status where p = :order")
     void updateStatus(Status status, Order order);
 
-    @Query(value = "SELECT p from Order p LEFT JOIN FETCH p.itens where p.id = :id")
+    @Query(value = "SELECT p from Order p LEFT JOIN FETCH p.items where p.id = :id")
     Order putIdWithItems(Long id);
 
 
